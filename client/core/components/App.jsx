@@ -18,6 +18,7 @@ export default class App extends Component {
       { _id: 1, name:'Meteor guide', url: 'https://guide.meteor.com/' },
       { _id: 2, name: 'React guide', url: 'https://facebook.github.io/react/docs/getting-started.html' },
       { _id: 3, name: 'Material-ui guide', url: 'http://www.material-ui.com/#/components/app-bar' },
+      { _id: 4, name: 'Flexbox Grid', url: 'http://flexboxgrid.com/'}
     ];
   }
 
@@ -35,12 +36,14 @@ export default class App extends Component {
           <h1>Chaudière Plaque</h1>
           <h2>French grade quality Meteor React boilerplate</h2>
         </header>
-        <div>
-          <RaisedButton label="I like Chaudière Plaque" primary={true}/>
+        <div className="row">
+          <div className="col-xs-12 col-md-6">
+            <RaisedButton label="I like Chaudière Plaque" primary={true}/>
+          </div>
+          <ul className="col-xs-12 col-md-6">
+            {this.renderLinks()}
+          </ul>
         </div>
-        <ul>
-          {this.renderLinks()}
-        </ul>
       </div>
     </MuiThemeProvider>
     );
