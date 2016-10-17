@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 
 import Link from './Link.jsx'
 
+// material-ui
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin();
+// material-ui components
+import RaisedButton from 'material-ui/RaisedButton';
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -21,15 +29,20 @@ export default class App extends Component {
 
   render() {
     return (
+      <MuiThemeProvider>
       <div className="container">
         <header>
           <h1>Chaudière Plaque</h1>
           <h2>French grade quality Meteor React boilerplate</h2>
         </header>
+        <div>
+          <RaisedButton label="I like Chaudière Plaque" primary={true}/>
+        </div>
         <ul>
           {this.renderLinks()}
         </ul>
       </div>
+    </MuiThemeProvider>
     );
   }
 }
