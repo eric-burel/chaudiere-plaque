@@ -28,6 +28,7 @@ export default class App extends Component {
     ));
   }
 
+  // NOTE: this.props.content is handled by the router
   render() {
     return (
       <MuiThemeProvider>
@@ -43,6 +44,11 @@ export default class App extends Component {
           <ul className="col-xs-12 col-md-6">
             {this.renderLinks()}
           </ul>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            {this.props.content}
+          </div>
         </div>
       </div>
     </MuiThemeProvider>
