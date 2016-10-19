@@ -25,6 +25,12 @@ therefore it is often combined with Flexbox Grid.
 Flexbox is a minimalistic grid system. As it is based on the flexbox property,
 it makes blocks alignement works like a charm.
 
+#### Sass
+We use Sass as our css preprocessor. Less is fine, but Sass seems to have more
+momentum in 2016 (arguably due to Bootstrap 4 and some other frameworks using
+Sass).
+The css code is automatically processed thanks to `fourseven:scss`.
+
 ### Routing : Flow Router
 Flow Router is now recommended by the Meteor official guide. We use it with
 React Mounter as the layout system
