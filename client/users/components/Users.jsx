@@ -8,19 +8,42 @@ import React, { Component, PropTypes} from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 import SignupForm from './SignupForm'
+import  LoginForm from './LoginForm'
 
 class Users extends Component {
   constructor(props){
+    console.log("calling constructor")
     super(props)
+    // the initial state is given as a prop
     this.state = {
       display : props.display
     }
+    this.changeDisplay = this.changeDisplay.bind(this)
   }
+
+  /**
+   * Change to another page (login, signup or other)
+   */
+  changeDisplay(display){
+    console.log('click click')
+    console.log(display)
+    this.setState({display})
+  }
+
   render(){
+    console.log('rendering...')
+    console.log(this.state)
+    const childrenProps = {
+      userId : this.props.userId,
+      changeDisplay : (()=> {return this.changeDisplay})() // NOTE : this syntax prevent the function to be triggered
+    }
     let page
-    switch(this.props.display){
-      case 'signup': page = <SignupForm userId={this.props.userId}/>; break
-      default : page = <SignupForm userId={this.props.userId}/> // default is login
+    switch(this.state.display){
+      case 'signup': page = <SignupForm {...childrenProps} />;
+      break
+      case 'login': page = <LoginForm {...childrenProps} />;
+      break
+      default : page = <SignupForm {...childrenProps}/> // default is login
     }
     return page
   }
