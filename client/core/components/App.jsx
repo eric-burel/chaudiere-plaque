@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Link from './Link.jsx'
 
@@ -7,12 +7,22 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin();
+injectTapEventPlugin()
 // material-ui components
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton'
+import AppBar from 'material-ui/AppBar'
+// core components
+import Header from './Header'
+import Footer from './Footer'
 
 // App component - represents the whole app
 export default class App extends Component {
+  constructor() {
+    super()
+    this.state = {}
+    this.title = "Chaudière Plaque"
+  }
+
   getLinks() {
     return [
       { _id: 1, name:'Meteor guide', url: 'https://guide.meteor.com/' },
@@ -32,26 +42,32 @@ export default class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-      <div className="container">
-        <header>
-          <h1>Chaudière Plaque</h1>
-          <h2>French grade quality Meteor React boilerplate</h2>
-        </header>
-        <div className="row">
-          <div className="col-xs-12 col-md-6">
-            <RaisedButton label="I like Chaudière Plaque" primary={true}/>
+        <div className="container-fluid">
+          <Header/>
+          <AppBar
+            title={this.title}
+            />
+          <div className="row">
+            <div className="col-xs-12 col-md-6">
+              <RaisedButton label="I like Chaudière Plaque" primary={true}/>
+            </div>
+            <ul className="col-xs-12 col-md-6">
+              {this.renderLinks()}
+            </ul>
           </div>
-          <ul className="col-xs-12 col-md-6">
-            {this.renderLinks()}
-          </ul>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
-            {this.props.content}
+          <div className="row">
+            <div className="col-xs-12">
+              {this.props.content}
+            </div>
           </div>
+          <Footer/>
         </div>
-      </div>
-    </MuiThemeProvider>
+      </MuiThemeProvider>
     );
   }
+}
+
+App.propTypes = {
+  // content is handled by the router
+  content: PropTypes.object.isRequired,
 }
