@@ -35,9 +35,9 @@ usersRoutes.route('/signup', {
   triggersEnter: [(context, redirect) => {
   }]
 });
-usersRoutes.route('/set-password', {
+usersRoutes.route('/reset-password/:token', {
   action(params) {
-    mount(App, {content: <Users display="set-password" option={params.option} />})
+    mount(App, {content: <Users display="reset-password" token={params.token} option={params.option} />})
   },
   triggersEnter: [(context, redirect) => {
   }]

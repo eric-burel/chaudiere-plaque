@@ -11,6 +11,7 @@ import SignupForm from './SignupForm'
 import  LoginForm from './LoginForm'
 import AlreadyLogged from './AlreadyLogged'
 import Forgotten from './Forgotten'
+import ResetPassword from './ResetPassword'
 
 class Users extends Component {
   constructor(props){
@@ -47,6 +48,8 @@ class Users extends Component {
       break
       case 'already-logged' : page = alreadyLogged
       break
+      case 'reset-password' : page = <ResetPassword {...childrenProps} token={this.props.token}/>
+      break
       default : page = userId ? alreadyLogged : <LoginForm {...childrenProps}/> // default is login
     }
     return page
@@ -65,9 +68,11 @@ Users.propTypes = {
       'default',
       'signup',
       'login',
-      'set-password',
-      'forgotten-password'
+      'reset-password',
+      'forgotten-password',
+      'already-logged'
     ].includes(props[propName])) return new Error('You must supply a page to display')
   },
-  userId : PropTypes.string
+  userId : PropTypes.string,
+  token : PropTypes.string // a token may be passed for some verification
 }
