@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import { Meteor } from 'meteor/meteor'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-
 import FlatButton from 'material-ui/FlatButton'
+
 
 // TODO : use a global Users component instead, which print the correct form
 // depending on the route and inject this kind of data
@@ -27,7 +27,6 @@ export default class LoginForm extends Component {
 
 
   render(){
-    let formOrLogout = ''
     return(
       <div>
         <p><strong>Connexion</strong></p>
@@ -68,6 +67,12 @@ export default class LoginForm extends Component {
             </div>
           </div>
         </form>
+        <div>
+          <FlatButton
+            label="Mot de passe oublié"
+            onClick={()=>this.props.changeDisplay('forgotten')}
+          />
+        </div>
       </div>
     )
   }

@@ -10,6 +10,7 @@ import { createContainer } from 'meteor/react-meteor-data'
 import SignupForm from './SignupForm'
 import  LoginForm from './LoginForm'
 import AlreadyLogged from './AlreadyLogged'
+import Forgotten from './Forgotten'
 
 class Users extends Component {
   constructor(props){
@@ -41,6 +42,8 @@ class Users extends Component {
       case 'signup': userId ? page = alreadyLogged : page = <SignupForm {...childrenProps} />;
       break
       case 'login': page = userId ? alreadyLogged : <LoginForm {...childrenProps} />;
+      break
+      case 'forgotten' : page = <Forgotten {...childrenProps}/>;
       break
       case 'already-logged' : page = alreadyLogged
       break
