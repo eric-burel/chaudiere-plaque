@@ -1,10 +1,8 @@
 import React, {Component, PropTypes} from 'react'
-import { createContainer } from 'meteor/react-meteor-data'
 import { Meteor } from 'meteor/meteor'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import LogoutButton from './LogoutButton'
 import FlatButton from 'material-ui/FlatButton'
 
 // TODO : use a global Users component instead, which print the correct form
@@ -28,64 +26,54 @@ export default class LoginForm extends Component {
   }
 
 
-render(){
-  let formOrLogout = ''
-  if (!this.props.userId){
-    formOrLogout =
-    <form ref="loginForm" onSubmit={this.handleSubmit}>
-      <div className="row">
-          <div className="col-xs-12">
-            <TextField
-              floatingLabelText="Email"
-              ref="email"
-              type="email"
-              fullWidth={true}
-              />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-12">
-            <TextField
-              floatingLabelText="Mot de passe"
-              ref="password"
-              type="password"
-              fullWidth={true}
-              />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-12">
-            <RaisedButton
-              label="Connexion"
-              primary={true}
-              fullWidth={true}
-              onClick={this.handleSubmit}
-              />
-          </div>
-        </div>
-      </form>
-    } else {
-      // already logged in
-      formOrLogout =
-      <div>
-        <p>Vous êtes déjà connecté.</p>
-        <LogoutButton userId={this.props.userId}/>
-      </div>
-    }
-
+  render(){
+    let formOrLogout = ''
     return(
       <div>
         <p><strong>Connexion</strong></p>
         <p><FlatButton
-           onClick={()=>{this.props.changeDisplay('signup')}}
-           label="Pas encore inscrit ? Créez votre compte"
-         /></p>
-        {formOrLogout}
+          onClick={()=>{this.props.changeDisplay('signup')}}
+          label="Pas encore inscrit ? Créez votre compte"
+          /></p>
+
+        <form ref="loginForm" onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Email"
+                ref="email"
+                type="email"
+                fullWidth={true}
+                />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Mot de passe"
+                ref="password"
+                type="password"
+                fullWidth={true}
+                />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <RaisedButton
+                label="Connexion"
+                primary={true}
+                fullWidth={true}
+                onClick={this.handleSubmit}
+                />
+            </div>
+          </div>
+        </form>
       </div>
     )
   }
 }
 
 LoginForm.propTypes = {
-  userId : PropTypes.string
+  userId : PropTypes.string,
+  changeDisplay :  PropTypes.func.isRequired
 }

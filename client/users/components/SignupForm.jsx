@@ -37,57 +37,45 @@ export default class SignupForm extends Component {
 
   render(){
     let formOrLogout = ''
-    if (!this.props.userId){
-      formOrLogout =
-      <form ref="signupForm" onSubmit={this.handleSubmit}>
-        <div className="row">
-          <div className="col-xs-12">
-            <TextField
-              floatingLabelText="Email"
-              ref="email"
-              type="email"
-              fullWidth={true}
-              />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-12">
-            <TextField
-              floatingLabelText="Mot de passe"
-              ref="password"
-              type="password"
-              fullWidth={true}
-              />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-12">
-            <RaisedButton
-              label="S'inscrire"
-              primary={true}
-              fullWidth={true}
-              onClick={this.handleSubmit}
-              />
-          </div>
-        </div>
-      </form>
-    } else {
-      // already logged in
-      formOrLogout =
-      <div>
-        <p>Vous êtes déjà connecté.</p>
-        <LogoutButton userId={this.props.userId}/>
-      </div>
-    }
-
     return(
       <div>
         <p><strong>Inscription</strong></p>
         <p><FlatButton
-           onClick={()=>{this.props.changeDisplay('login')}}
-           label="Déja inscrit ? Connectez-vous"
-         /></p>
-        {formOrLogout}
+          onClick={()=>{this.props.changeDisplay('login')}}
+          label="Déja inscrit ? Connectez-vous"
+          /></p>
+        <form ref="signupForm" onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Email"
+                ref="email"
+                type="email"
+                fullWidth={true}
+                />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Mot de passe"
+                ref="password"
+                type="password"
+                fullWidth={true}
+                />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <RaisedButton
+                label="S'inscrire"
+                primary={true}
+                fullWidth={true}
+                onClick={this.handleSubmit}
+                />
+            </div>
+          </div>
+        </form>
       </div>
     )
   }
@@ -97,27 +85,3 @@ SignupForm.propTypes = {
   changeDisplay : PropTypes.func.isRequired,
   userId : PropTypes.string
 }
-/* Example from React doc :
-
-class MyForm extends React.Component {
-constructor(props) {
-super(props);
-this.state = {value: 'Hello!'};
-this.handleChange = this.handleChange.bind(this);
-}
-
-handleChange(event) {
-this.setState({value: event.target.value});
-}
-
-render() {
-return (
-<input
-type="text"
-value={this.state.value}
-onChange={this.handleChange}
-/>
-);
-}
-}
-*/

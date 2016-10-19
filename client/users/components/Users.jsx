@@ -9,10 +9,10 @@ import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 import SignupForm from './SignupForm'
 import  LoginForm from './LoginForm'
+import AlreadyLogged from './AlreadyLogged'
 
 class Users extends Component {
   constructor(props){
-    console.log("calling constructor")
     super(props)
     // the initial state is given as a prop
     this.state = {
@@ -25,25 +25,26 @@ class Users extends Component {
    * Change to another page (login, signup or other)
    */
   changeDisplay(display){
-    console.log('click click')
-    console.log(display)
     this.setState({display})
   }
 
   render(){
-    console.log('rendering...')
-    console.log(this.state)
     const childrenProps = {
       userId : this.props.userId,
       changeDisplay : (()=> {return this.changeDisplay})() // NOTE : this syntax prevent the function to be triggered
     }
     let page
+    // signup and login can only be shown when logged out
+    const alreadyLogged =  <AlreadyLogged {...childrenProps} />
+    const userId = this.props.userId
     switch(this.state.display){
-      case 'signup': page = <SignupForm {...childrenProps} />;
+      case 'signup': userId ? page = alreadyLogged : page = <SignupForm {...childrenProps} />;
       break
-      case 'login': page = <LoginForm {...childrenProps} />;
+      case 'login': page = userId ? alreadyLogged : <LoginForm {...childrenProps} />;
       break
-      default : page = <SignupForm {...childrenProps}/> // default is login
+      case 'already-logged' : page = alreadyLogged
+      break
+      default : page = userId ? alreadyLogged : <LoginForm {...childrenProps}/> // default is login
     }
     return page
   }
@@ -52,8 +53,8 @@ class Users extends Component {
 export default createContainer(() => {
   return {
     userId: Meteor.userId()
-  };
-}, Users);
+  }
+}, Users)
 
 Users.propTypes = {
   display : (props, propName, componentName)=>{
