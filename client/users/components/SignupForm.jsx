@@ -25,6 +25,7 @@ export default class SignupForm extends Component {
               <TextField
                 floatingLabelText="Email"
                 ref="email"
+                type="email"
                 fullWidth={true}
                 />
             </div>
@@ -34,6 +35,7 @@ export default class SignupForm extends Component {
               <TextField
                 floatingLabelText="Mot de passe"
                 ref="password"
+                type="password"
                 fullWidth={true}
                 />
             </div>
