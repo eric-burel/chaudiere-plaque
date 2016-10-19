@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
+import LogoutButton from './LogoutButton'
+
 // TODO : use a global Users component instead, which print the correct form
 // depending on the route and inject this kind of data
 class SignupForm extends Component {
@@ -72,8 +74,12 @@ class SignupForm extends Component {
         </div>
       </form>
     } else {
+      // already logged in
       formOrLogout =
-      <p>Vous êtes déjà connecté.</p>
+      <div>
+        <p>Vous êtes déjà connecté.</p>
+        <LogoutButton userId={this.props.userId}/>
+      </div>
     }
 
     return(
