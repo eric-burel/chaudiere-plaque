@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import Link from './Link.jsx'
-
 // material-ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 // Needed for onTouchTap
@@ -14,7 +12,9 @@ import AppBar from 'material-ui/AppBar'
 // core components
 import Header from './Header'
 import Footer from './Footer'
-import SignupForm from '../../users/components/SignupForm'
+import Link from './Link'
+import Users from '../../users/components/Users'
+
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -63,7 +63,7 @@ export default class App extends Component {
           </div>
           <div className="row center-xs">
             <div className="col-xs-12 col-md-4 col-lg-3">
-              <SignupForm />
+              <Users display="default"/>
             </div>
           </div>
           <Footer/>
