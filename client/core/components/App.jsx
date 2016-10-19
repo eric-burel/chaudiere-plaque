@@ -14,6 +14,7 @@ import AppBar from 'material-ui/AppBar'
 // core components
 import Header from './Header'
 import Footer from './Footer'
+import SignupForm from '../../users/components/SignupForm'
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -58,6 +59,11 @@ export default class App extends Component {
           <div className="row">
             <div className="col-xs-12">
               {this.props.content}
+            </div>
+          </div>
+          <div className="row center-xs">
+            <div className="col-xs-12 col-md-4 col-lg-3">
+              <SignupForm />
             </div>
           </div>
           <Footer/>
