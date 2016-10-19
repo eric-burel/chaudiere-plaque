@@ -24,3 +24,5 @@ kadira:flow-router
 fourseven:scss
 accounts-password
 react-meteor-data
+practicalmeteor:mocha
+hwillson:stub-collections
