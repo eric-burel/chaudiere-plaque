@@ -1,48 +1,31 @@
-# chaudiere-plaque
-A French grade quality Meteor React (opiniated) boilerplate
+# My Tailor Is Rich
 
-## Install
+## Installation
+
+## Boilerplate code from CP
+
+We use a custom Meteor/React boilerplate app to start any project. The `sync` remote points to the public directory containing this boilerplate ; the local `github` branch points to `sync/master`.
+Feel free to propose change and improvements.
+
+See **[https://github.com/lebrun-burel/chaudiere-plaque]()** for more details.
+
+**Note : the more the application evolves, the more conflicts there can be
+between the boilerplate and the app.**
+Therefore, this procedure is only here for the developper's information and should only be applied very carefully.
 ```
-git clone https://github.com/eric-burel/chaudiere-plaque.git my-new-chaudiere-app
-cd my-new-chaudiere-app
-npm install
-meteor run
+git checkout github
+git pull
+git checkout master
+git rebase github
 ```
-## Technological choices
-### UI : React
-### CSS Frameworks
-#### Material-ui
-Material-ui has a lot of advantages against other Material Design frameworks :
 
-- it is well maintained
-- it is complete
-- it is meant for react
 
-#### Flexbox Grid
-One major issue (or advantage ?) with Material-ui is that it lacks a grid system,
-therefore it is often combined with Flexbox Grid.
 
-Flexbox is a minimalistic grid system. As it is based on the flexbox property,
-it makes blocks alignement works like a charm.
+## Staging environment on Heroku
 
-#### Sass
-We use Sass as our css preprocessor. Less is fine, but Sass seems to have more
-momentum in 2016 (arguably due to Bootstrap 4 and some other frameworks using
-Sass).
-The css code is automatically processed thanks to `fourseven:scss`.
+[https://my-tailor-staging.herokuapp.com]()
 
-### Routing : Flow Router
-Flow Router is now recommended by the Meteor official guide. We use it with
-React Mounter as the layout system
-(**Note : ReactLayout is not the preferred solution anymore**)
+To push the `dev` branch
+`git push --force heroku dev:master`
 
-React-Router is also a sensible solution, it might be useful in the future.
-However it sounds a bit weird, so
-we preferred the Meteor-Friendly solution to the React-friendly solution here.
-Both React-Router and Flow Router have huge communities and are well maintained.
-
-## Code Style
-
-Code is linted with `eslint`. It is written in ES6, which is handled natively by Meteor 1.3+.
-I try to stick to AirBnB coding style. However, I definitely dislike semi-colons. I mean, does someone still code on an 80 character terminal ?
-Line jumps exist for a reason. So I don't use semi-colons when they are not necessary.
+## Production environment
