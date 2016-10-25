@@ -1,0 +1,6 @@
+{
+    "MAIL_URL" : "smtp://username:password@smtp.foo.bar:465",
+    "public" : {
+
+    }
+}

@@ -1,4 +1,4 @@
-# My Tailor Is Rich
+# Chaudière Plaque
 
 ## Installation
 
@@ -21,11 +21,26 @@ git rebase github
 
 
 
-## Staging environment on Heroku
+## Environments : dev, staging and production
+### Environment variables
 
-[https://my-tailor-staging.herokuapp.com]()
+Environment variables are set programmatically on startup, using the settings
+file. This way, the developper can still set some environment variables,
+even when the environment itself is not reachable.
+
+Typically, this makes loading the app on Amazon EC2 instances far easier.
+**The settings file must however be kept apart from the version manager !**
+
+Usually, it is stored in a `.deploy` hidden folder. It can then be loaded on
+startup with the command `meteor run --settings .deploy/mySettings.json`.
+If you are using Meteor Up, `mup` will take care of that itelf.
+
+
+### Staging environment on Heroku
+
+[https:/chaudiere-plaque.herokuapp.com]()
 
 To push the `dev` branch
 `git push --force heroku dev:master`
 
-## Production environment
+### Production environment
