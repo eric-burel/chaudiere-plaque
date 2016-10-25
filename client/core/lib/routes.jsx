@@ -2,6 +2,8 @@ import React from 'react'
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { mount } from 'react-mounter';
 
+import NotFound from '../../static/components/NotFound'
+
 import App from '../../core/components/App.jsx'
 
 var coreRoutes = FlowRouter.group({
@@ -12,7 +14,6 @@ var coreRoutes = FlowRouter.group({
   }]
 });
 
-// handling /admin route
 coreRoutes.route('/', {
   action(params) {
     mount(App, {content: <div>This is the routing content</div>})
@@ -21,6 +22,13 @@ coreRoutes.route('/', {
     console.log('running /home trigger')
   }]
 });
+
+// 404 route
+FlowRouter.notFound = {
+    action: function() {
+      mount(App, {content: <NotFound />})
+    }
+};
 
 /*myModuleRoutes.route('/a-route', {
   action: function() {
