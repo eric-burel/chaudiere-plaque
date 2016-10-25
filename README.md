@@ -1,6 +1,38 @@
 # Chaudière Plaque
 
+## Introduction
+
+Please note that this Readme is also a boilerplate itself, like in the Inception movie.
+
+Chaudière Plaque is a wonderful Meteor React boilerplate, imagined and developped by [Eric Burel and Anne-Cécile Lebrun](http://www.lebrun-burel.com).
+
+## Usage
+
+Describe a typical user workflow here.
+
 ## Installation
+
+## Folder structure
+
+The folder structure mostly respect the official Meteor styleguide, that can be
+found here : [https://guide.meteor.com/structure.html]().
+
+### Client side
+#### core
+The `core` folder contains all components, higher order components, and more broadly
+files that can be used throughout the app (styles, external libs, basic routes).
+
+Here the core is pretty simple, however it definitely should be splitted in more
+modules when a project needs a lot of low-level custom modules.
+
+#### static
+
+The `static` folder contains static pages, such as the 404 error or legal terms.
+
+#### users
+
+The `users` module handles authentication, signup and so on. It is mainly inspired
+by the `accounts-ui` module for Meteor, but uses React and Material-ui.
 
 ## Boilerplate code from CP
 

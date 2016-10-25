@@ -3,6 +3,10 @@
  * (login, signup). Meteor Accounts-ui works in a similar fashion ;
  * the page to show is passed as a prop, so that we can easily switch
  * from one page to another, or lock a page depending on the route
+ *
+ * TODO :  some refactoring could reduce duplications between components,
+ * as each component have a button, a form, a title, a top redirection button ("already logged in ?"),
+ * a facultative bottom redirection button ("Forgotten password"), and a callback for each form
  */
 import React, { Component, PropTypes} from 'react'
 import { Meteor } from 'meteor/meteor'
@@ -13,6 +17,17 @@ import AlreadyLogged from './AlreadyLogged'
 import Forgotten from './Forgotten'
 import ResetPassword from './ResetPassword'
 
+// styles for the module
+// each submodule can use the styles
+const styles={
+  titleDiv:{
+    textAlign:'center'
+  },
+  buttonDiv:{
+    paddingTop:'40px',
+    paddingBottom:'20px'
+  }
+}
 class Users extends Component {
   constructor(props){
     super(props)
@@ -22,6 +37,7 @@ class Users extends Component {
     }
     this.changeDisplay = this.changeDisplay.bind(this)
   }
+
 
   /**
    * Change to another page (login, signup or other)
@@ -33,7 +49,8 @@ class Users extends Component {
   render(){
     const childrenProps = {
       userId : this.props.userId,
-      changeDisplay : (()=> {return this.changeDisplay})() // NOTE : this syntax prevent the function to be triggered
+      changeDisplay : (()=> {return this.changeDisplay})(), // NOTE : this syntax prevent the function to be triggered
+      styles:styles
     }
     let page
     // signup and login can only be shown when logged out

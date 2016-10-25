@@ -20,13 +20,25 @@ export default class AlreadyLogged extends Component {
       return null
     } else {
       return (
-        <div>
+        <div style={{textAlign:"center"}}>
           <p>Vous êtes déjà connecté.</p>
-          <FlatButton
-            label="Retour à l'accueil"
-            href="/"
-            />
-          <LogoutButton userId={this.props.userId}/>
+          <div>
+            <FlatButton
+              label="Accéder à l'application"
+              href="/dashboard"
+              primary={true}
+              />
+          </div>
+          <div>
+            <FlatButton
+              label="Retour à l'accueil"
+              href="/"
+              secondary={true}
+              />
+          </div>
+          <div style={{paddingBottom:"10px", paddingTop:"30px"}}>
+            <LogoutButton userId={this.props.userId}/>
+          </div>
         </div>
       )
     }

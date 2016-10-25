@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import { Meteor } from 'meteor/meteor'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
+import UsersPage from './UsersPage'
 
 
 // TODO : use a global Users component instead, which print the correct form
@@ -10,75 +9,59 @@ import FlatButton from 'material-ui/FlatButton'
 export default class LoginForm extends Component {
   constructor(props){
     super(props)
-    this.handleSubmit = this.handleSubmit.bind(this) // manual binding
+    this.onSubmit = this.onSubmit.bind(this) // manual binding
   }
 
-  handleSubmit(event){
-    event.preventDefault() // prevent browser submition
+  onSubmit(done){
     const email = this.refs.email.input.value.trim() // email is a TextField, input.value is the corresponding text
     const password = this.refs.password.input.value.trim()
     Meteor.loginWithPassword(email, password, (err)=>{
       if (err){
-        console.log(err)
+        done(err, null)
       } else {
+        done()
       }
     })
   }
 
 
-  render(){
-    return(
-      <div>
-        <p><strong>Connexion</strong></p>
-        <p><FlatButton
-          onClick={()=>{this.props.changeDisplay('signup')}}
-          label="Pas encore inscrit ? Créez votre compte"
-          /></p>
 
-        <form ref="loginForm" onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="col-xs-12">
-              <TextField
-                floatingLabelText="Email"
-                ref="email"
-                type="email"
-                fullWidth={true}
-                />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
-              <TextField
-                floatingLabelText="Mot de passe"
-                ref="password"
-                type="password"
-                fullWidth={true}
-                />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
-              <RaisedButton
-                label="Connexion"
-                primary={true}
-                fullWidth={true}
-                onClick={this.handleSubmit}
-                />
-            </div>
-          </div>
-        </form>
-        <div>
-          <FlatButton
-            label="Mot de passe oublié"
-            onClick={()=>this.props.changeDisplay('forgotten')}
-          />
-        </div>
-      </div>
+  render(){
+    const formInputs = [
+          <TextField
+            ref="email"
+            floatingLabelText="Email"
+            key="email"
+            type="email"
+            fullWidth={true}
+            />,
+          <TextField
+            ref="password"
+            floatingLabelText="Mot de passe"
+            key="password"
+            type="password"
+            fullWidth={true}
+            />
+    ]
+    return (
+      <UsersPage
+      title="Login"
+      redirection="signup"
+      redirectionMessage= "Pas encore membre ? Inscrivez-vous"
+      buttonLabel="Se connecter"
+      formInputs={formInputs}
+      changeDisplay={this.props.changeDisplay}
+      styles={this.props.styles}
+      onSubmit={this.onSubmit}
+      secondaryButton="Mot de passe oublié ?"
+      secondaryOnClick={()=>this.props.changeDisplay('forgotten')}
+      />
     )
   }
 }
 
 LoginForm.propTypes = {
   userId : PropTypes.string,
-  changeDisplay :  PropTypes.func.isRequired
+  changeDisplay :  PropTypes.func.isRequired,
+  styles : PropTypes.object.isRequired
 }

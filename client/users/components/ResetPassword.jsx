@@ -7,66 +7,53 @@ import React, {Component, PropTypes} from 'react'
 //import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-
-import FlatButton from 'material-ui/FlatButton'
+import UsersPage from './UsersPage'
 
 export default class ResetPassword extends Component {
   constructor(props){
     super(props)
-    this.handleSubmit = this.handleSubmit.bind(this) // manual binding
+    this.onSubmit = this.onSubmit.bind(this) // manual binding
   }
 
-  handleSubmit(event){
-    event.preventDefault() // prevent browser submition
+  onSubmit(done){
     const password = this.refs.password.input.value.trim() // email is a TextField, input.value is the corresponding text
     Accounts.resetPassword(this.props.token, password, (err)=>{
       if (err) {
-        console.log(err)
+        done(err,null)
       } else {
         // TODO : print an alert to confirm success of the operation
-        this.props.changeDisplay('login')
+        done(null, "Mot de passe changé avec succès !")
       }
     })
   }
 
   render(){
+    const formInputs =[
+      <TextField
+        floatingLabelText="Nouveau mot de passe :"
+        ref="password"
+        type="password"
+        fullWidth={true}
+        />
+    ]
     return(
-      <div>
-        <p><strong>Mot de passe oublié</strong></p>
-        <p>Choisissez un nouveau mot de passe</p>
-        <form ref="forgottenForm" onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="col-xs-12">
-              <TextField
-                floatingLabelText="Nouveau mot de passe :"
-                ref="password"
-                type="password"
-                fullWidth={true}
-                />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
-              <RaisedButton
-                label="Changer mon mot de passe"
-                primary={true}
-                fullWidth={true}
-                onClick={this.handleSubmit}
-                />
-            </div>
-          </div>
-        </form>
-        <p><FlatButton
-          onClick={()=>{this.props.changeDisplay('login')}}
-          label="Retour vers la page de connexion"
-          /></p>
-      </div>
+      <UsersPage
+        title="Mot de passe oublié"
+        subtitle="Choisissez un nouveau mot de passe"
+        onSubmit={this.onSubmit}
+        buttonLabel="Changer mon mot de passe"
+        formInputs={formInputs}
+        changeDisplay={this.props.changeDisplay}
+        styles={this.props.styles}
+        secondaryButton="Retour vers la page de connexion"
+        secondaryOnClick={()=>{this.props.changeDisplay('login')}}
+      />
     )
   }
 }
 ResetPassword.propTypes = {
   userId : PropTypes.string,
   changeDisplay :  PropTypes.func.isRequired,
-  token : PropTypes.string.isRequired
+  token : PropTypes.string.isRequired,
+  styles : PropTypes.object.isRequired
 }
