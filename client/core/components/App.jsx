@@ -25,7 +25,11 @@ export default class App extends Component {
       { _id: 1, name:'Meteor guide', url: 'https://guide.meteor.com/' },
       { _id: 2, name: 'React guide', url: 'https://facebook.github.io/react/docs/getting-started.html' },
       { _id: 3, name: 'Material-ui guide', url: 'http://www.material-ui.com/#/components/app-bar' },
-      { _id: 4, name: 'Flexbox Grid', url: 'http://flexboxgrid.com/'}
+      { _id: 4, name: 'Flexbox Grid', url: 'http://flexboxgrid.com/'},
+      {_id: 5, name: 'Enzyme (React testing)', url: 'http://airbnb.io/enzyme/docs/guides.html'},
+      {_id: 6, name: 'Mocha (test framework)', url: 'https://mochajs.org/'},
+      {_id: 7, name: 'Chai (assertion)', url: 'http://chaijs.com/api/assert/'},
+      {_id: 8, name: 'Sinon (spy, stubs and mock)', url: 'http://sinonjs.org/docs/'}
     ];
   }
 

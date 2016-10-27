@@ -16,6 +16,19 @@ const messageStyle={
   color:colors.green500,
   fontSize : '13px'
 }
+
+// styles for the module
+// each submodule can use the styles
+const styles={
+  titleDiv:{
+    textAlign:'center'
+  },
+  buttonDiv:{
+    paddingTop:'40px',
+    paddingBottom:'20px'
+  }
+}
+
 export default class UsersPage extends Component {
   constructor(props){
     super(props)
@@ -25,6 +38,9 @@ export default class UsersPage extends Component {
     }
   }
 
+  // call the parent submit handler, and then print error/messages
+  // depending on the parent result
+  // NOTE : the parent gets the form data by its own means, using refs
   handleSubmit(event){
     event.preventDefault()
     // we just submitted a form, so we hide error messages
@@ -38,7 +54,9 @@ export default class UsersPage extends Component {
     })
   }
 
-  renderFormInputs(inputs){
+  // the parent pass form inputs as the children
+  // here we simply separate them into rows
+  renderFormInputs(inputs = []){
     let i =0
     return inputs.map((input)=>{
       i++
@@ -51,43 +69,64 @@ export default class UsersPage extends Component {
       })
     }
 
-    render(){
+    /**
+    * Render the title of the form , the subtitle, and a falcultative redirection button
+    */
+    renderHeader(){
+      return(
+        <div className="header" style={styles.titleDiv}>
+          <h2>{this.props.title}</h2>
+          {this.props.subtitle ? <p>{this.props.subtitle}</p> : null}
+          {this.props.redirection ?
+            <p><FlatButton
+              className="redirection"
+              onClick={()=>{this.props.changeDisplay(this.props.redirection)}}
+              label={this.props.redirectionMessage}
+              secondary={true}
+              /></p>
+            : null
+          }
+        </div>
+      )
+    }
+
+    /**
+    * Render the form itself
+    */
+    renderForm(){
+      return(
+        <form ref="form" onSubmit={this.handleSubmit.bind(this)}>
+          {this.renderFormInputs(this.props.formInputs)}
+          <div className="row" style={styles.buttonDiv}>
+            <div className="col-xs-12">
+              {this.state.error ?
+                <p style={errorStyle}>Erreur : {this.state.error}</p>
+                : null
+              }
+              {this.state.message ?
+                <p style={messageStyle}>{this.state.message}</p>
+                : null
+              }
+              <RaisedButton
+                label={this.props.buttonLabel}
+                primary={true}
+                fullWidth={true}
+                onClick={this.handleSubmit.bind(this)}
+                />
+            </div>
+          </div>
+        </form>
+      )
+    }
+
+    /**
+    * Render a facultative
+    */
+    renderFooter(){
       return(
         <div>
-          <div style={this.props.styles.titleDiv}>
-            <h2>{this.props.title}</h2>
-            {this.props.subtitle ? <p>{this.props.subtitle}</p> : null}
-            {this.props.redirection ?
-              <p><FlatButton
-                onClick={()=>{this.props.changeDisplay(this.props.redirection)}}
-                label={this.props.redirectionMessage}
-                secondary={true}
-                /></p>
-              : null
-            }
-          </div>
-          <form ref="form" onSubmit={this.handleSubmit.bind(this)}>
-            {this.renderFormInputs(this.props.formInputs)}
-            <div className="row" style={this.props.styles.buttonDiv}>
-              <div className="col-xs-12">
-                {this.state.error ?
-                  <p style={errorStyle}>Erreur : {this.state.error}</p>
-                  : null
-                }
-                {this.state.message ?
-                  <p style={messageStyle}>{this.state.message}</p>
-                  : null
-                }
-                <RaisedButton
-                  label={this.props.buttonLabel}
-                  primary={true}
-                  fullWidth={true}
-                  onClick={this.handleSubmit.bind(this)}
-                  />
-              </div>
-            </div>
-          </form>
-          {this.props.secondaryButton ?
+          {
+            this.props.secondaryButton ?
             <p>
               <FlatButton
                 label={this.props.secondaryButton}
@@ -98,16 +137,25 @@ export default class UsersPage extends Component {
           </div>
         )
       }
+
+      render(){
+        return(
+          <div>
+            {this.renderHeader()}
+            {this.renderForm()}
+            {this.renderFooter()}
+          </div>
+        )
+      }
     }
 
     UsersPage.propTypes = {
-      changeDisplay : PropTypes.func.isRequired,
-      styles : PropTypes.object.isRequired,
-      buttonLabel : PropTypes.string.isRequired,
       title : PropTypes.string.isRequired,
       subtitle : PropTypes.string,
+      changeDisplay : PropTypes.func.isRequired,
+      buttonLabel : PropTypes.string.isRequired,
       onSubmit : PropTypes.func.isRequired,
-      formInputs : PropTypes.array.isRequired,
+      formInputs : PropTypes.array,
       redirection : PropTypes.string, // if there is a redirection button on the form
       redirectionMessage : PropTypes.string, // TODO : should check if redirectionMessage is defined when redirection is
       secondaryButton : PropTypes.string,

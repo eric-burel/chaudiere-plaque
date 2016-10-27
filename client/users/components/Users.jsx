@@ -16,18 +16,6 @@ import  LoginForm from './LoginForm'
 import AlreadyLogged from './AlreadyLogged'
 import Forgotten from './Forgotten'
 import ResetPassword from './ResetPassword'
-
-// styles for the module
-// each submodule can use the styles
-const styles={
-  titleDiv:{
-    textAlign:'center'
-  },
-  buttonDiv:{
-    paddingTop:'40px',
-    paddingBottom:'20px'
-  }
-}
 class Users extends Component {
   constructor(props){
     super(props)
@@ -49,8 +37,7 @@ class Users extends Component {
   render(){
     const childrenProps = {
       userId : this.props.userId,
-      changeDisplay : (()=> {return this.changeDisplay})(), // NOTE : this syntax prevent the function to be triggered
-      styles:styles
+      changeDisplay : (()=> {return this.changeDisplay})() // NOTE : this syntax prevent the function to be triggered
     }
     let page
     // signup and login can only be shown when logged out
