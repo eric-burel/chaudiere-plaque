@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import AppBar from 'material-ui/AppBar'
 // core components
 import Header from './Header'
+import Menu from './Menu'
 import Footer from './Footer'
 import Link from './Link'
 import Users from '../../users/components/Users'
@@ -21,41 +22,32 @@ export default class App extends Component {
   }
 
   getLinks() {
+    const newLink = (label, routeName, external)=>{
+      return {key:routeName, label, routeName, external}
+    }
     return [
-      { _id: 1, name:'Meteor guide', url: 'https://guide.meteor.com/' },
-      { _id: 2, name: 'React guide', url: 'https://facebook.github.io/react/docs/getting-started.html' },
-      { _id: 3, name: 'Material-ui guide', url: 'http://www.material-ui.com/#/components/app-bar' },
-      { _id: 4, name: 'Flexbox Grid', url: 'http://flexboxgrid.com/'},
-      {_id: 5, name: 'Enzyme (React testing)', url: 'http://airbnb.io/enzyme/docs/guides.html'},
-      {_id: 6, name: 'Mocha (test framework)', url: 'https://mochajs.org/'},
-      {_id: 7, name: 'Chai (assertion)', url: 'http://chaijs.com/api/assert/'},
-      {_id: 8, name: 'Sinon (spy, stubs and mock)', url: 'http://sinonjs.org/docs/'}
+      newLink('Meteor guide','https://guide.meteor.com/',true),
+      newLink('React guide','https://facebook.github.io/react/docs/getting-started.html',true),
+      newLink('Flexbox Grid','http://flexboxgrid.com/',true),
+      newLink('Material-ui guide','http://www.material-ui.com/#/components/app-bar',true),
+      newLink('Radium CSS','https://formidable.com/open-source/radium/docs/api',true),
+      newLink('Enzyme (React testing)','http://airbnb.io/enzyme/docs/guides.html',true),
+      newLink('Mocha (test framework)','https://mochajs.org/',true),
+      newLink('Chai (assertion)', 'http://chaijs.com/api/assert/',true),
+      newLink('Sinon (spy, stubs and mock)', 'http://sinonjs.org/docs/',true)
     ];
   }
 
-  renderLinks() {
-    return this.getLinks().map((link) => (
-      <Link key={link._id} link={link} />
-    ));
-  }
 
   // NOTE: this.props.content is handled by the router
   render() {
     return (
       <MuiThemeProvider>
-        <div className="container-fluid">
+        <div>
           <Header/>
-          <AppBar
-            title={this.title}
+          <Menu
+            links={this.getLinks()}
             />
-          <div className="row">
-            <div className="col-xs-12 col-md-6">
-              <RaisedButton label="I like Chaudière Plaque" primary={true}/>
-            </div>
-            <ul className="col-xs-12 col-md-6">
-              {this.renderLinks()}
-            </ul>
-          </div>
           <div className="row">
             <div className="col-xs-12">
               {this.props.content}

@@ -5,7 +5,6 @@ export default class Header extends Component {
     return (
       <header>
         <h1>Chaudière Plaque</h1>
-        <h2>French grade quality Meteor React boilerplate</h2>
       </header>
     )
   }
