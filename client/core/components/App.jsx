@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 // material-ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+
 // material-ui components
 // core components
 import Header from './Header'
@@ -22,10 +26,10 @@ export default class App extends Component {
   // NOTE: this.props.content is handled by the router
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <div>
           <Header/>
-          <MenuBar />
+            <MenuBar />
           <div className="row">
             <div className="col-xs-12">
               {this.props.content}
@@ -39,7 +43,7 @@ export default class App extends Component {
           <Footer/>
         </div>
       </MuiThemeProvider>
-    );
+    )
   }
 }
 

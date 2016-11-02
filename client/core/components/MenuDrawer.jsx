@@ -1,6 +1,6 @@
 /**
- * Left menu that appears when clicking the menu icon
- */
+* Left menu that appears when clicking the menu icon
+*/
 import React, {Component, PropTypes} from 'react'
 import createRouteListener from '../factories/createRouteListener'
 import AppBar from 'material-ui/AppBar'
@@ -9,6 +9,10 @@ import Divider from 'material-ui/Divider'
 import Subheader from 'material-ui/Subheader'
 import {Menu, MenuItem } from 'material-ui/Menu'
 import {FlowRouter} from 'meteor/kadira:flow-router'
+// Drawer is dark
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 class MenuDrawer extends Component {
   constructor(){
@@ -68,13 +72,15 @@ class MenuDrawer extends Component {
 
   render(){
     return (
-      <Drawer
-        docked={false}
-        open={this.props.open}
-        onRequestChange={this.props.onRequestChange}
-        >
-        {this.renderDrawerMenu()}
-      </Drawer>
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <Drawer
+          docked={false}
+          open={this.props.open}
+          onRequestChange={this.props.onRequestChange}
+          >
+          {this.renderDrawerMenu()}
+        </Drawer>
+      </MuiThemeProvider>
     )
   }
 }
