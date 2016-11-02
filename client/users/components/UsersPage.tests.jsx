@@ -99,7 +99,7 @@ describe('<UsersPage />', () => {
         redirectionMessage:'foobar'
       })
       const wrapper = mountWithContext(<UsersPage {...props} />)
-      wrapper.find('.header button').simulate('click')
+      wrapper.find('.header button').simulate('change')
       // TODO trigger on the flattbutton click
       assert.isTrue(spy.calledOnce)
       assert.isTrue(spy.calledWithExactly("redirection"))

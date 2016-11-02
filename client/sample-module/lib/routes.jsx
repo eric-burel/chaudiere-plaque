@@ -5,11 +5,11 @@ import { mount } from 'react-mounter';
 // App is the layout component, we can select any other component for the routing
 // for example a router could handle a sidebar with
 // ReactLayout.render(SideBar, {content : <Foobar/>})
-import App from '../../core/components/App.jsx'
-import MyModule from '../components/MyModule.jsx'
+import App from '../../core/components/App'
+import ShowSampleModule from '../components/ShowSampleModule'
 
 var myModuleRoutes = FlowRouter.group({
-  prefix: '/my-module',
+  prefix: '/sample-module',
   name: 'my-module',
   triggersEnter: [function(context, redirect) {
     console.log("You entered the module group")
@@ -19,10 +19,10 @@ var myModuleRoutes = FlowRouter.group({
 // handling /admin route
 myModuleRoutes.route('/', {
   action(params) {
-    mount(App, {content: <MyModule option={params.option} />})
+    mount(App, {content: <ShowSampleModule />})
   },
   triggersEnter: [(context, redirect) => {
-    console.log('running /my-modyle trigger')
+    console.log('running /sample-module trigger')
   }]
 });
 

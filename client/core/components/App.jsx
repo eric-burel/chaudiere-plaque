@@ -11,6 +11,7 @@ import Header from './Header'
 import MenuBar from './MenuBar'
 import Footer from './Footer'
 import Users from '../../users/components/Users'
+import ShowSampleModule from '../../sample-module/components/ShowSampleModule'
 
 
 // App component - represents the whole app
@@ -33,6 +34,11 @@ export default class App extends Component {
           <div className="row">
             <div className="col-xs-12">
               {this.props.content}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <ShowSampleModule/>
             </div>
           </div>
           <div className="row center-xs">
