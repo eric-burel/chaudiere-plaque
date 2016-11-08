@@ -27,3 +27,6 @@ react-meteor-data
 practicalmeteor:mocha
 hwillson:stub-collections
 fortawesome:fontawesome
+aldeed:simple-schema
+aldeed:collection2
+mdg:validated-method
