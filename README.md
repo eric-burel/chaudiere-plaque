@@ -147,6 +147,8 @@ Name | Usage | Doc
 chai | Assertion lib (especially using assert) | [http://chaijs.com/api/assert/]()
 enzyme | React testing
 sinon | Stubbing, spying
+jest | Snapshot testing (Note: Jest is actually a full React testing framework, yet we
+rather use Mocha + Enzyme) | [https://facebook.github.io/jest/docs/tutorial-react.html#content]()
 
 ### Dev
 Name | Usage
