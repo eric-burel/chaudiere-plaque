@@ -1,5 +1,35 @@
 # Chaudière Plaque
 
+## Packages
+
+Whenever possible, we prefer `npm` packages to Atmosphere packages that
+tends to be deprecated.
+
+### Npm packages
+Name | Usage
+isomorphic-fetch | fetch API polyfill for HTTP requests
+lodash | Helpers and functionnal programming
+moment | Time management
+
+### React specific packages
+
+Name | Usage | Doc
+react-router | Router | [https://github.com/ReactTraining/react-router/tree/master/docs]()
+redux | State container ~ Flux architecture implementation | [http://redux.js.org/]()
+redux-thunk | Handle async with redux
+storybook | Visual development | 
+
+### Testing
+Name | Usage | Doc
+chai | Assertion lib (especially using assert) | [http://chaijs.com/api/assert/]()
+enzyme | React testing
+sinon | Stubbing, spying
+
+### Dev
+Name | Usage
+eslint | Linting
+eslint-plugin-react | Linting jsx
+
 ## Introduction
 
 Please note that this Readme is also a boilerplate itself, like in the Inception movie.
