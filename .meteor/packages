@@ -26,3 +26,5 @@ hwillson:stub-collections
 aldeed:simple-schema
 aldeed:collection2
 mdg:validated-method
+zuuk:stale-session
+mixmax:smart-disconnect

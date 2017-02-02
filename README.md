@@ -142,6 +142,10 @@ redux | State container ~ Flux architecture implementation | [http://redux.js.or
 redux-thunk | Handle async with redux
 storybook | Visual development |
 
+### Meteor
+zuuk:stale-session | Clean up old session after 30 minutes
+mixmax:smart-disconnect | Automatically turn off the DDP connexion when user visits another tab, helps to reduce the application workload.
+
 ### Testing
 Name | Usage | Doc
 chai | Assertion lib (especially using assert) | [http://chaijs.com/api/assert/]()
